@@ -15,7 +15,7 @@ namespace EforBackend.DAL
         {
             get
             {
-                return @"Data Source=.;Initial Catalog=IsTakipDB;User ID=sa;Password=1309634486";
+                return @"Data Source=DESKTOP-D870JAD\SQLEXPRESS;Initial Catalog=IsTakipDB;Integrated Security=True;";
             }
         }
 

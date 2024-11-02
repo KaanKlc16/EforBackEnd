@@ -12,5 +12,7 @@ namespace EforBackend.BLL.Abstract
         List<Isler> CalisanIsleriniGetir(int PersonelId);
 
         int IsEkle(Isler m);
+        bool GorevDurumuDegistir(int IsId, string IsYorum);
+
     }
 }

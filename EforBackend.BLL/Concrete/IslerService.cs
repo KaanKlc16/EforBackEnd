@@ -26,6 +26,10 @@ namespace EforBackend.BLL.Concrete
         {
             return _repos.IsEkle(m);
         }
+        public bool GorevDurumuDegistir(int IsId, string IsYorum)
+        {
+            return _repos.GorevDurumuDegistir(IsId,IsYorum);
+        }
 
     }
 }

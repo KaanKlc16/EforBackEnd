@@ -17,11 +17,12 @@ namespace EforBackend.Models
         public DateTime yapilanTarih { get; set; }
         public int isDurumId { get; set; }
         public string isYorum { get; set; }
-        public int tahminiSure { get; set; }
+        public int? tahminiSure { get; set; }
         public bool isOkunma { get; set; }
         public DateTime isBaslangic { get; set; }
         public DateTime isBitirmeSure { get; set; }
 
         public string isBaslangicString { get { return isBaslangic.Year == 2000 ? "" :  isBaslangic.ToString("dd.MM.yyyy"); } }
+        public string isBitirmeString { get { return isBitirmeSure.Year == 2000 | isDurumId == 1 ? "" :  isBitirmeSure.ToString("dd.MM.yyyy"); } }
     }
 }

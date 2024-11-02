@@ -11,10 +11,10 @@ using System.Web.Mvc;
 
 namespace EforBackend.WebApi2.Controllers
 {
-    public class YoneticiController : Controller
+    public class CalisanController : Controller
     {
         private IIslerService _isService;
-        public YoneticiController()
+        public CalisanController()
         {
             _isService = new IslerService();
         }
@@ -26,7 +26,7 @@ namespace EforBackend.WebApi2.Controllers
         }
 
         [HttpPost]
-        public JsonResult IsEkle()
+        public JsonResult GorevDurumDegistir()
         {
             Stream req = Request.InputStream;
             req.Seek(0, System.IO.SeekOrigin.Begin);
@@ -38,38 +38,19 @@ namespace EforBackend.WebApi2.Controllers
 
                 string uyari = "";
 
-                if (veri.isPersonelId == 0)
-                {
-                    uyari += "Personel girilmedi !..";
-                }
-               
-
 
                 if (uyari == "")
                 {
-                    Isler yeniEklenen = new Isler 
-                    {
-                        isDurumId = 1,
-                        iletilenTarih = DateTime.Now,
-                       isBaslik = veri.isBaslik,
-                        isBaslangic = veri.isBaslangic,
-                        isAciklama = veri.isAciklama,
-                        isBitirmeSure = new DateTime(2000,1,1),
-                        //isId = 0,
-                        //isOkunma = false,
-                        isPersonelId = veri.isPersonelId,
-                        isYorum = "",
-                        tahminiSure = 0,
-                        yapilanTarih = new DateTime(2000,1,1)
-                    };
+                    
 
-                    int ekleId = _isService.IsEkle(yeniEklenen);
-                    if (ekleId > 0)
+                    bool ekle = _isService.GorevDurumuDegistir(veri.isId,veri.isYorum);
+
+                    if (ekle )
                     {
 
                         JsonSonucModel gonder = new JsonSonucModel
                         {
-                            DonenID = ekleId,
+                            DonenID = veri.isId,
                             Sonuc = true,
                             SonucAciklama = "Görev eklendi !.."
                         };
@@ -110,5 +91,7 @@ namespace EforBackend.WebApi2.Controllers
 
 
         }
+
+
     }
 }

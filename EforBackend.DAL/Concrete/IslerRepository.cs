@@ -80,5 +80,32 @@ namespace EforBackend.DAL.Concrete
             }
             return eklenenId;
         }
+        public bool GorevDurumuDegistir(int IsId, string IsYorum) {
+            bool tamam = false;
+            using (SqlConnection myConnection = new SqlConnection(VTFonksiyonlar.ConString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    VTFonksiyonlar.CommandOzellikler(command, myConnection, CommandType.Text, "UPDATE Isler SET isDurumId=@isDurumId,isYorum=@isYorum,isBitirmeSure=@isBitirmeSure WHERE isId=@isId");
+                    VTFonksiyonlar.ParametreYaz(command, SqlDbType.Int, "@isId", IsId);
+                   
+                    VTFonksiyonlar.ParametreYaz(command, SqlDbType.Int, "@isDurumId", 2);
+                    VTFonksiyonlar.ParametreYaz(command, SqlDbType.VarChar, "@isYorum", IsYorum);
+                   
+                   
+                    VTFonksiyonlar.ParametreYaz(command, SqlDbType.DateTime, "@isBitirmeSure", DateTime.Now);
+
+                   
+                    myConnection.Open();
+                    int islem = command.ExecuteNonQuery();
+                    if (islem > 0) { tamam = true; } else { tamam = false; }
+                    myConnection.Close();
+                }
+            }
+            return tamam;
+
+
+
+        }
     }
 }

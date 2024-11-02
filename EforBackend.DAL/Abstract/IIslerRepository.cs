@@ -11,6 +11,8 @@ namespace EforBackend.DAL.Abstract
     {
         List<Isler> CalisanIsleriniGetir(int PersonelId);
 
+        bool GorevDurumuDegistir (int IsId,string IsYorum);
+
         int IsEkle(Isler m);
     }
 }
